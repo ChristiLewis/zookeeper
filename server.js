@@ -71,6 +71,12 @@ function filterByQuery(query, animalsArray) {
 //   }
 //ABOVE IS THE FILTERBYQUERY() FUNCTION TO NOT RUN ALL OF THE FILTERING INSIDE THE GET() METHOD BELOW. IT TAKES IN THE REQ.QUERY AS AN ARGUMENT AND FILTERS THROUGH THE ANIMAL ARRAY OF OBJECTS AND RETURNS BACK A FILTERED ARRAY.
 
+//FINDBYID() FUNCTION ABOVE GET() ROUTES
+function findById(id, animalsArray) {
+  const result = animalsArray.filter(animal => animal.id === id)[0];
+  return result;
+};
+
 //BELOW ADDS THE ROUTE IT IS A GET() METHOD THAT REQUIRES A STRING DESCRIBING THE FETCH FROM ROUTE AND THE SECOND IS A CALLBACK FUNCTION EACH REQUEST HAS A RESPONSE THAT USES THE SEND() METHOD- HERE IT SENDS 'HELLO'.
 app.get('/api/animals', (req, res) => {
     let results = animals;
@@ -82,6 +88,17 @@ app.get('/api/animals', (req, res) => {
     // res.json(animals);
     res.json(results);
 });
+
+//SEARCHING FOR JUST ONE ANIMAL BY ID REQUIRES A DIFFERENT ROUTE THAN THE GENERAL ROUTE ABOVE- AND IT HAS TO COME AFTER THE GENERAL GET() ROUTE BY QUERY. THIS TIME WE HAVE A <ROUTE>/:<PARAMETERNAME>
+app.get('/api/animals/:id', (req, res) => {
+  const result = findById(req.params.id, animals);
+  if (result) {
+    res.json(result);
+  } else {
+    res.send(404);
+  }
+});
+
 
 //TEST QUERY  http://localhost:3001/api/animals?name=Erica BROWSER RESULTS SHOULD PRINT AN OBJECT WITH THE PROPERTY NAME AND A VALUE OF ERICA.  IT DEMONSTRATES TAKING THE QUERY PARAMETER AND TURNING IT INTO A JSON - ANY STRING OF QUERY PARAMETERS USED ON THE URL WILL BECOME JSON - SO ?A=111&B=222&C=333 BECOMES:
 // {
