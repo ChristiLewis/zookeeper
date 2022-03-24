@@ -77,7 +77,7 @@ app.get('/api/animals', (req, res) => {
     // console.log(req.query)
     // res.send('Hello');
     // res.json(animals);
-    res,json(results);
+    res.json(results);
 });
 
 //TEST QUERY  http://localhost:3001/api/animals?name=Erica BROWSER RESULTS SHOULD PRINT AN OBJECT WITH THE PROPERTY NAME AND A VALUE OF ERICA.  IT DEMONSTRATES TAKING THE QUERY PARAMETER AND TURNING IT INTO A JSON - ANY STRING OF QUERY PARAMETERS USED ON THE URL WILL BECOME JSON - SO ?A=111&B=222&C=333 BECOMES:
@@ -90,7 +90,7 @@ app.get('/api/animals', (req, res) => {
 
 
 //CHAIN THE LISTEN() METHOD ONTO OUR SERVER HERE AT THE ENDE OF SERVER.JS FILE
-app.listen(3003, () => {
+app.listen(3001, () => {
     console.log(`API server now on port 3001`);
 });
 
