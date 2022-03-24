@@ -4,6 +4,9 @@ const { animals } = require('./data/animals');
 //REQUIRE EXPRESS.JS AT THE TOP OF THIS SERVER.JS FILE
 const express = require('express');
 
+//ALLOW FOR DIFFERENT PORTS- GO TO BO PG- ADJUST LISTEN
+const PORT = process.env.PORT || 3001;
+
 //INSTANTIATE THE SERVER-ASSIGN EXPRESS() TO THE APP VARIABLE
 const app = express();
 
@@ -90,7 +93,13 @@ app.get('/api/animals', (req, res) => {
 
 
 //CHAIN THE LISTEN() METHOD ONTO OUR SERVER HERE AT THE ENDE OF SERVER.JS FILE
-app.listen(3001, () => {
-    console.log(`API server now on port 3001`);
+// app.listen(3001, () => {
+//     console.log(`API server now on port 3001`);
+// });
+
+// THE ABOVE IS TOO LIMITED- BELOW OPENS UP THE APP TO MANY PORTS FOR DEVELOPMENT- MAY COME BACK AND LIMIT UPON DEPLOYMENT
+app.listen(PORT, () => {
+  console.log(`API server now on port ${PORT}!`);
 });
+
 
